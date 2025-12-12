@@ -1,2 +1,2 @@
 # ARFinal
-Trabalho final da disciplina de rv
+Trabalho final da disciplina de RV.
