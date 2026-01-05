@@ -956,6 +956,12 @@
             "icon": null
           },
           {
+            "name": "Rigidbody",
+            "scenes": [],
+            "dependencyType": 0,
+            "icon": null
+          },
+          {
             "name": "Required by UIElements Module",
             "scenes": [],
             "dependencyType": 2,
