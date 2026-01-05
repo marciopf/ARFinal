@@ -7,26 +7,31 @@ public class Touch : MonoBehaviour
 
     void Update()
     {
-        // Safety check: ensure a mouse is connected
-        if (Mouse.current == null) return;
+        bool isPressed = false;
+        Vector2 screenPosition = Vector2.zero;
 
-        // 2. Replace Input.GetMouseButtonDown(0)
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        // 1. Verifica TOQUE NA TELA (Celular)
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
         {
-            Debug.Log("Pressed left button");
+            isPressed = true;
+            screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+        }
+        // 2. Se não tocou, verifica MOUSE (Computador/Editor)
+        else if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            isPressed = true;
+            screenPosition = Mouse.current.position.ReadValue();
+        }
 
-            // 3. Replace Input.mousePosition
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-
-            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        // Se houve clique ou toque, faz o Raycast
+        if (isPressed)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(screenPosition);
             RaycastHit hit;
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 2f);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, 100)) // Lembre-se: Distância 100 pode ser pouco dependendo da cena
             {
-                Debug.Log("hit: " + hit.transform.name);
-
-                if (hit.transform.CompareTag("gradil")) // slightly faster than tag == "string"
+                if (hit.transform.CompareTag("gradil"))
                 {
                     Vector3 pos = hit.point;
                     pos.z += 0.25f;
