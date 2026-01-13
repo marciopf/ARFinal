@@ -27,3 +27,23 @@ MonoBehaviour:
     m_SpecifySize: 0
     m_Name: gradil
     m_Texture: {fileID: 2800000, guid: 2fb0c44ad5d61ee41abf8c43e0abe6dc, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4650681401685480038
+      m_GuidHigh: 3669677257456948138
+    m_SerializedTextureGuid:
+      m_GuidLow: 3374515745135814520
+      m_GuidHigh: 17840707255154153177
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: balcao-sinuoso
+    m_Texture: {fileID: 2800000, guid: f5c86778b0302ed4d9963275b9ec96f7, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5443335669003798689
+      m_GuidHigh: 9486706263114885027
+    m_SerializedTextureGuid:
+      m_GuidLow: 9454388780422553706
+      m_GuidHigh: 17320265677906067641
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: grade_de_bandeira
+    m_Texture: {fileID: 2800000, guid: 1986606abc818334b940fb0adef15df0, type: 3}
