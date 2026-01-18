@@ -6,6 +6,10 @@ TagManager:
   tags:
   - gradil
   - gradilinfo
+  - balcao
+  - balcaoinfo
+  - gradebandeira
+  - gradebandeirainfo
   layers:
   - Default
   - TransparentFX

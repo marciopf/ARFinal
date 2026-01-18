@@ -218,7 +218,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8719b0e597fff940a09093fb57dd924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Touch
-  gradilPopup: {fileID: 2073195845992372861, guid: 10c50ff0fa8860d4588a45ea8d703b08, type: 3}
+  listaDeInfos:
+  - tagDoObjeto: gradil
+    infoPrefab: {fileID: 2073195845992372861, guid: 10c50ff0fa8860d4588a45ea8d703b08, type: 3}
+  - tagDoObjeto: balcao
+    infoPrefab: {fileID: 6922101791177099781, guid: bc78e486f97bdaa4ea1e15da6026f429, type: 3}
+  - tagDoObjeto: gradebandeira
+    infoPrefab: {fileID: 59646543384166500, guid: b95447e3808948f4bb38884c5bf10d95, type: 3}
 --- !u!1 &1608071599
 GameObject:
   m_ObjectHideFlags: 0

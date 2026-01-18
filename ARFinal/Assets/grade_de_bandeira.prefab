@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 142764079251914926}
   m_Layer: 0
   m_Name: grade_de_bandeira
-  m_TagString: gradil
+  m_TagString: gradebandeira
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
