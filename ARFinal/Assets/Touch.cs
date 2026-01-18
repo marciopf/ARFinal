@@ -1,28 +1,40 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic; // Necessário para usar Listas
+using System.Collections.Generic;
 
 public class Touch : MonoBehaviour
 {
-    // 1. Criamos uma "classe" simples para aparecer no Inspector
     [System.Serializable]
     public struct InfoConfig
     {
-        public string tagDoObjeto;   // Ex: "gradil", "balcao", "bandeira"
-        public GameObject infoPrefab; // O popup correspondente a essa tag
+        public string tagDoObjeto;
+        public GameObject infoPrefab;
     }
 
-    // 2. Lista que você vai preencher no Unity
     public List<InfoConfig> listaDeInfos;
 
+    // O popup que está aberto atualmente
     private GameObject popupAtual;
+
+    // NOVO: Guarda qual objeto AR (Gradil, Balcao, etc) originou o popup
+    private GameObject objetoArFocado;
 
     void Update()
     {
+        // --- 1. VERIFICAÇÃO DE SEGURANÇA (NOVO) ---
+        // Se temos um popup aberto, mas o objeto AR dono dele foi desativado (perdeu tracking), fecha o popup.
+        if (popupAtual != null && objetoArFocado != null)
+        {
+            if (!objetoArFocado.activeInHierarchy)
+            {
+                FecharPopup();
+            }
+        }
+        // ------------------------------------------
+
         bool isPressed = false;
         Vector2 screenPosition = Vector2.zero;
 
-        // Verifica Input (Toque ou Mouse)
         if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
         {
             isPressed = true;
@@ -41,9 +53,6 @@ public class Touch : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100))
             {
-                // --- LÓGICA DE ABRIR O POPUP CORRETO ---
-
-                // Vamos procurar na nossa lista se o objeto clicado tem uma tag cadastrada
                 bool encontrouConfig = false;
 
                 foreach (var config in listaDeInfos)
@@ -52,45 +61,47 @@ public class Touch : MonoBehaviour
                     {
                         encontrouConfig = true;
 
-                        // Se já tem um popup aberto, fecha ele
-                        if (popupAtual != null)
-                        {
-                            Destroy(popupAtual);
-                        }
+                        // Fecha anterior se existir
+                        if (popupAtual != null) Destroy(popupAtual);
 
-                        // Posição ajustada (pode ajustar esse valor conforme a necessidade)
                         Vector3 pos = hit.point;
                         pos.y += 0.25f;
-                        // Dica: Se o balcão for muito alto, talvez precise ajustar o Z ou Y dinamicamente
 
-                        // Cria o popup ESPECÍFICO daquela tag
                         popupAtual = Instantiate(config.infoPrefab, pos, transform.rotation);
 
-                        // Encerra o loop pois já achamos o objeto certo
+                        // NOVO: Guardamos quem é o dono desse popup (ex: o objeto do Gradil que foi clicado)
+                        objetoArFocado = hit.transform.gameObject;
+
                         break;
                     }
                 }
 
-                // --- LÓGICA DE FECHAR (CLICAR NA PRÓPRIA INFO) ---
-
-                // Se não clicou em um objeto da lista, verifica se clicou no próprio popup para fechar
                 if (!encontrouConfig)
                 {
-                    // Verifica se o objeto clicado é o popup atual ou um filho dele
-                    // OU se ele tem a tag de fechar (caso você use tags nos popups)
-                    if (popupAtual != null && hit.transform.gameObject == popupAtual)
+                    // Se clicar no próprio popup para fechar ou no botão de fechar
+                    if (popupAtual != null && (hit.transform.gameObject == popupAtual || hit.transform.IsChildOf(popupAtual.transform)))
                     {
-                        Destroy(popupAtual);
-                        popupAtual = null;
+                        FecharPopup();
                     }
-                    // Mantive sua lógica antiga por segurança caso use a tag "gradilinfo" em todos
-                    else if (hit.transform.CompareTag("gradilinfo"))
+                    else if (hit.transform.CompareTag("gradilinfo")) // Mantendo compatibilidade
                     {
                         Destroy(hit.transform.gameObject);
                         popupAtual = null;
+                        objetoArFocado = null;
                     }
                 }
             }
         }
+    }
+
+    // Criei uma funçãozinha para evitar repetir código de "zerar" as variáveis
+    void FecharPopup()
+    {
+        if (popupAtual != null)
+        {
+            Destroy(popupAtual);
+        }
+        popupAtual = null;
+        objetoArFocado = null;
     }
 }
