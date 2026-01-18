@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8133488599159135226}
   - component: {fileID: 6058259819133781451}
+  - component: {fileID: 4988557982057999960}
   m_Layer: 0
   m_Name: gradilinfo
   m_TagString: gradilinfo
@@ -54,6 +55,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.47913426, z: 0.054013014}
   m_Center: {x: 0, y: -0.0011064112, z: -0.0066571236}
+--- !u!114 &4988557982057999960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073195845992372861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73120875108aa7a4285919c9598db926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard
 --- !u!1 &4214019703063788340
 GameObject:
   m_ObjectHideFlags: 0
