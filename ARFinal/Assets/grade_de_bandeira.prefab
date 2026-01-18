@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7539913200646422348}
   - component: {fileID: 142764079251914926}
+  - component: {fileID: 3314710262840888787}
   m_Layer: 0
   m_Name: grade_de_bandeira
   m_TagString: gradebandeira
@@ -54,6 +55,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.16012464, y: 1.0408471, z: 0.583746}
   m_Center: {x: -0.0066577047, y: -0.008552074, z: 0.006538838}
+--- !u!114 &3314710262840888787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9116916876819780088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d9110b24db03b4aa62bbd96ae424cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PinchToScale
+  speed: 0.005
+  minScale: 0.5
+  maxScale: 3
 --- !u!1001 &3359276311287340485
 PrefabInstance:
   m_ObjectHideFlags: 0
