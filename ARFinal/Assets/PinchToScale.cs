@@ -4,7 +4,7 @@ using UnityEngine.InputSystem; // Necessário para o novo sistema de input
 public class PinchToScale : MonoBehaviour
 {
     [Header("Configurações de Escala")]
-    public float speed = 0.005f; // Sensibilidade do zoom
+    public float speed = 0.05f; // Sensibilidade do zoom
     public float minScale = 0.5f; // Tamanho mínimo permitido
     public float maxScale = 3.0f; // Tamanho máximo permitido
 
